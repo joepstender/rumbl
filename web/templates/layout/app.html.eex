@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello Rumbl!</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body>
+    <div class="container">
+      <header class="header">
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="pull-right">
+            <%= if @current_user do %>
+              <p class="navbar-text"><%= @current_user.username %></p>
+              <p class="navbar-text"><%= link "My Videos", to: video_path(@conn, :index) %></p>
+              <div class="navbar-text"><%= link "Log out", to: session_path(@conn, :delete, @current_user),
+                method: "delete" %></div>
+            <% else %>
+              <p class="navbar-text"><%= link "Register", to: user_path(@conn, :new) %></p>
+              <p class="navbar-text"><%= link "log in", to: session_path(@conn, :new) %></p>
+            <% end %>
+          </div>
+          <span><p class="navbar-text"><%= link "Rumbl.io", to: "/" %></p></span>
+        </nav>
+
+      </header>
+
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+
+    </div> <!-- /container -->
+    <script>window.userToken = "<%= assigns[:user_token] %>"</script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
