@@ -6,9 +6,9 @@ defmodule Rumbl do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
+  # Define workers and child supervisors to be supervised
     children = [
       supervisor(Rumbl.Endpoint, []),
-      supervisor(InfoSys.Supervisor, []), # new supervisor
       supervisor(Rumbl.Repo, []),
     ]
 

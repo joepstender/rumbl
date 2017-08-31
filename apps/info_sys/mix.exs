@@ -19,7 +19,7 @@ defmodule InfoSys.Mixfile do
   def application do
     [
       extra_applications: [:logger],
-      mod: {InfoSys.Application, []}
+      mod: {InfoSys, []}
     ]
   end
 
@@ -33,3 +33,4 @@ defmodule InfoSys.Mixfile do
     ]
   end
 end
+z

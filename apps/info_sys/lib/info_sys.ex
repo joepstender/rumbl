@@ -1,11 +1,10 @@
 defmodule InfoSys do
+  @backends [InfoSys.Wolfram]
   use Application
 
   def start(_type, _args) do
     InfoSys.Supervisor.start_link()
   end
-
-  @backends [InfoSys.Wolfram]
 
   defmodule Result do
     defstruct score: 0, text: nil, url: nil, backend: nil
